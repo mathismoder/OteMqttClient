@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://ws01.lom.ch/soap/" xmlns:tns="http://ws01.lom.ch/soap/ws.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://ws01.lom.ch/soap/ws.wsdl" name="ws">
+   <types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws01.lom.ch/soap/" attributeFormDefault="unqualified" elementFormDefault="unqualified">
+         <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+         
+         <complexType name="emptyRequest">
+            <sequence />
+         </complexType>
+         <complexType name="emptyResponse">
+            <sequence />
+         </complexType>
+         <complexType name="DpRef">
+            <sequence>
+               <element name="oid" maxOccurs="1" minOccurs="1" type="xsd:string" />
+               <element name="prop" maxOccurs="1" minOccurs="0" type="xsd:string" />
+            </sequence>
+         </complexType>
+         <complexType name="DpLst">
+            <sequence>
+               <element name="index" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="name" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="prop" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="desc" maxOccurs="1" minOccurs="0" type="xsd:string" />
+            </sequence>
+         </complexType>
+         <complexType name="DpCfg">
+            <sequence>
+               <element name="index" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="name" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="prop" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="desc" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="value" maxOccurs="1" minOccurs="1" type="xsd:string" />
+               <element name="unit" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="type" maxOccurs="1" minOccurs="0" type="xsd:int" />
+               <element name="step" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="minValue" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="maxValue" maxOccurs="1" minOccurs="0" type="xsd:string" />
+            </sequence>
+         </complexType>
+         <complexType name="DP">
+            <sequence>
+               <element name="index" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="name" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="prop" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="desc" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="value" maxOccurs="1" minOccurs="1" type="xsd:string" />
+               <element name="unit" maxOccurs="1" minOccurs="0" type="xsd:string" />
+               <element name="timestamp" maxOccurs="1" minOccurs="0" type="xsd:int" />
+            </sequence>
+         </complexType>
+         <complexType name="listDpRequest">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="startIndex" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="count" maxOccurs="1" minOccurs="1" type="xsd:int" />
+            </sequence>
+         </complexType>
+         <complexType name="listDpResponse">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="dpLst" maxOccurs="unbounded" minOccurs="0" type="ns:DpLst" />
+            </sequence>
+         </complexType>
+         <complexType name="getDpRequest">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="startIndex" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="count" maxOccurs="1" minOccurs="1" type="xsd:int" />
+            </sequence>
+         </complexType>
+         <complexType name="getDpResponse">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="dpCfg" maxOccurs="unbounded" minOccurs="0" type="ns:DpCfg" />
+            </sequence>
+         </complexType>
+         <complexType name="setDpRequest">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="dpCfg" maxOccurs="unbounded" minOccurs="0" type="ns:DpCfg" />
+            </sequence>
+         </complexType>
+         <complexType name="setDpResponse">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+            </sequence>
+         </complexType>
+         <complexType name="readDpRequest">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="startIndex" maxOccurs="1" minOccurs="1" type="xsd:int" />
+               <element name="count" maxOccurs="1" minOccurs="1" type="xsd:int" />
+            </sequence>
+         </complexType>
+         <complexType name="readDpResponse">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="dp" maxOccurs="unbounded" minOccurs="0" type="ns:DP" />
+            </sequence>
+         </complexType>
+         <complexType name="writeDpRequest">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+               <element name="dp" maxOccurs="unbounded" minOccurs="0" type="ns:DP" />
+            </sequence>
+         </complexType>
+         <complexType name="writeDpResponse">
+            <sequence>
+               <element name="ref" maxOccurs="1" minOccurs="1" type="ns:DpRef" />
+            </sequence>
+         </complexType>
+         <element name="listDpRequest" type="ns:listDpRequest" />
+         <element name="getDpRequest" type="ns:getDpRequest" />
+         <element name="setDpRequest" type="ns:setDpRequest" />
+         <element name="readDpRequest" type="ns:readDpRequest" />
+         <element name="writeDpRequest" type="ns:writeDpRequest" />
+         <!-- operation response element -->
+         <element name="listDpResponse" type="ns:listDpResponse" />
+         <!-- operation response element -->
+         <element name="getDpResponse" type="ns:getDpResponse" />
+         <!-- operation response element -->
+         <element name="setDpResponse" type="ns:setDpResponse" />
+         <!-- operation response element -->
+         <element name="readDpResponse" type="ns:readDpResponse" />
+         <!-- operation response element -->
+         <element name="writeDpResponse" type="ns:writeDpResponse" />
+      </schema>
+   </types>
+   <message name="versionRequest" />
+   <message name="versionResponse">
+      <part name="result" type="xsd:int" />
+   </message>
+   <message name="listDP">
+      <part name="parameters" element="ns:listDpRequest" />
+   </message>
+   <message name="listDpResponse">
+      <part name="parameters" element="ns:listDpResponse" />
+   </message>
+   <message name="getDP">
+      <part name="parameters" element="ns:getDpRequest" />
+   </message>
+   <message name="getDpResponse">
+      <part name="parameters" element="ns:getDpResponse" />
+   </message>
+   <message name="setDP">
+      <part name="parameters" element="ns:setDpRequest" />
+   </message>
+   <message name="setDpResponse">
+      <part name="parameters" element="ns:setDpResponse" />
+   </message>
+   <message name="readDP">
+      <part name="parameters" element="ns:readDpRequest" />
+   </message>
+   <message name="readDpResponse">
+      <part name="parameters" element="ns:readDpResponse" />
+   </message>
+   <message name="writeDP">
+      <part name="parameters" element="ns:writeDpRequest" />
+   </message>
+   <message name="writeDpResponse">
+      <part name="parameters" element="ns:writeDpResponse" />
+   </message>
+   <portType name="wsPortType">
+      <operation name="version">
+         <documentation>Function to get the current I-COM version.</documentation>
+         <input message="tns:versionRequest" />
+         <output message="tns:versionResponse" />
+      </operation>
+      <operation name="listDP">
+         <documentation>Use this function to list data points in a given menu level.</documentation>
+         <input message="tns:listDP" />
+         <output message="tns:listDpResponse" />
+      </operation>
+      <operation name="getDP">
+         <documentation>Use this function to return the configuration of a data point, or a group of data points.</documentation>
+         <input message="tns:getDP" />
+         <output message="tns:getDpResponse" />
+      </operation>
+      <operation name="setDP">
+         <documentation>Use this function to modify a data point, or a group of data points.</documentation>
+         <input message="tns:setDP" />
+         <output message="tns:setDpResponse" />
+      </operation>
+      <operation name="readDP">
+         <documentation>Use this function to read the current value of a data point, or a group of data points.</documentation>
+         <input message="tns:readDP" />
+         <output message="tns:readDpResponse" />
+      </operation>
+      <operation name="writeDP">
+         <documentation>Use this function to write to the value of a data point, or a group of data points.</documentation>
+         <input message="tns:writeDP" />
+         <output message="tns:writeDpResponse" />
+      </operation>
+   </portType>
+   <binding name="ws" type="tns:wsPortType">
+      <SOAP:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+      <operation name="version">
+         <SOAP:operation style="rpc" soapAction="" />
+         <input>
+            <SOAP:body namespace="http://ws01.lom.ch/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" />
+         </input>
+         <output>
+            <SOAP:body namespace="http://ws01.lom.ch/soap/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" />
+         </output>
+      </operation>
+      <operation name="listDP">
+         <SOAP:operation style="document" soapAction="http://ws01.lom.ch/soap/listDP" />
+         <input>
+            <SOAP:body use="literal" parts="parameters" />
+         </input>
+         <output>
+            <SOAP:body use="literal" parts="parameters" />
+         </output>
+      </operation>
+      <operation name="getDP">
+         <SOAP:operation style="document" soapAction="http://ws01.lom.ch/soap/getDP" />
+         <input>
+            <SOAP:body use="literal" parts="parameters" />
+         </input>
+         <output>
+            <SOAP:body use="literal" parts="parameters" />
+         </output>
+      </operation>
+      <operation name="setDP">
+         <SOAP:operation style="document" soapAction="http://ws01.lom.ch/soap/setDP" />
+         <input>
+            <SOAP:body use="literal" parts="parameters" />
+         </input>
+         <output>
+            <SOAP:body use="literal" parts="parameters" />
+         </output>
+      </operation>
+      <operation name="readDP">
+         <SOAP:operation style="document" soapAction="http://ws01.lom.ch/soap/readDP" />
+         <input>
+            <SOAP:body use="literal" parts="parameters" />
+         </input>
+         <output>
+            <SOAP:body use="literal" parts="parameters" />
+         </output>
+      </operation>
+      <operation name="writeDP">
+         <SOAP:operation style="document" soapAction="http://ws01.lom.ch/soap/writeDP" />
+         <input>
+            <SOAP:body use="literal" parts="parameters" />
+         </input>
+         <output>
+            <SOAP:body use="literal" parts="parameters" />
+         </output>
+      </operation>
+   </binding>
+   <service name="ws">
+      <documentation>I-COM Web Service since V0.38</documentation>
+      <port name="ws" binding="tns:ws">
+         <SOAP:address location="http://ws01.lom.ch/soap/wsICOM.asmx" />
+      </port>
+   </service>
+</definitions>

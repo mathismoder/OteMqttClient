@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.3.0 generiert 
+Siehe <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Änderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
+Generiert: 2019.07.09 um 08:09:08 PM CEST 
+
+  -->
+      
+    <bindings xmlns:tns="http://ws01.lom.ch/soap/" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="de.rc7000.soap"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:listDpRequest">
+                  
+            <class ref="de.rc7000.soap.ListDpRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getDpRequest">
+                  
+            <class ref="de.rc7000.soap.GetDpRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:setDpRequest">
+                  
+            <class ref="de.rc7000.soap.SetDpRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:readDpRequest">
+                  
+            <class ref="de.rc7000.soap.ReadDpRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:writeDpRequest">
+                  
+            <class ref="de.rc7000.soap.WriteDpRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:listDpResponse">
+                  
+            <class ref="de.rc7000.soap.ListDpResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:getDpResponse">
+                  
+            <class ref="de.rc7000.soap.GetDpResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:setDpResponse">
+                  
+            <class ref="de.rc7000.soap.SetDpResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:readDpResponse">
+                  
+            <class ref="de.rc7000.soap.ReadDpResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:writeDpResponse">
+                  
+            <class ref="de.rc7000.soap.WriteDpResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:emptyRequest">
+                  
+            <class ref="de.rc7000.soap.EmptyRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:emptyResponse">
+                  
+            <class ref="de.rc7000.soap.EmptyResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DpRef">
+                  
+            <class ref="de.rc7000.soap.DpRef"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DpLst">
+                  
+            <class ref="de.rc7000.soap.DpLst"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DpCfg">
+                  
+            <class ref="de.rc7000.soap.DpCfg"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DP">
+                  
+            <class ref="de.rc7000.soap.DP"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>
