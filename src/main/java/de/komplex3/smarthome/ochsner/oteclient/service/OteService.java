@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,15 +47,12 @@ public class OteService {
 	public OteService(){
 		try {
 			mf = MessageFactory.newInstance();
-			message = mf.createMessage();
-			message.setProperty(SOAPMessage.WRITE_XML_DECLARATION, Boolean.TRUE.toString());
 			context = JAXBContext.newInstance(GetDpRequest.class);
 			marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
 		} catch (SOAPException | JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 	}
@@ -70,12 +66,11 @@ public class OteService {
 	public String getDPRequest(String oid) {
 		String uri = "http://" + properties.getHost() + "/ws";
 		
-		HttpHeaders headers = new HttpHeaders();
-		
 		// construct payload
 		DpRef ref = new DpRef();
 		ref.setOid(oid);
-		
+		ref.setProp("");
+
 		GetDpRequest req = new GetDpRequest();
 		req.setRef(ref);
 		req.setCount(10);
@@ -84,23 +79,22 @@ public class OteService {
 		out = new ByteArrayOutputStream();
 		
 		try {
-			// 
+			message = mf.createMessage();
+			message.setProperty(SOAPMessage.WRITE_XML_DECLARATION, Boolean.TRUE.toString());
 			
 			body = message.getSOAPBody();	
 
 			marshaller.marshal(req, body);
-			message.saveChanges();
 			message.writeTo(out);
 
 		} catch (JAXBException | SOAPException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		// small hack to change namespace - OTE doesn't like anything besides xmlns:ns
 		payload = new String(out.toByteArray()).replace("ns3", "ns");
 
-		HttpEntity<String> reqEntity = new HttpEntity<String>(payload, headers);
+		HttpEntity<String> reqEntity = new HttpEntity<String>(payload);
 		ResponseEntity<String> entity = restTemplate.exchange(uri, HttpMethod.POST, reqEntity, String.class);
 	    
 	    return entity.getBody();

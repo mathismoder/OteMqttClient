@@ -63,7 +63,7 @@ public class PublisherService {
 			msg.setPayload(result.getBytes());
 			mqttclient.publish(properties.getBasetopic()+oid, msg);
 		} catch (MqttException e) {
-			logger.error("Error While Sending Mqtt Messages to " + mqttclient.getServerURI(), e.getMessage());
+			logger.error("Error while sending Mqtt message to " + mqttclient.getServerURI(), e.getMessage());
 			System.exit(-1);
 		}
 		
