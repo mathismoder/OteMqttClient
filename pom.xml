@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>de.komplex3.smarthome.ochsner</groupId>
 	<artifactId>oteclient</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>oteclient</name>
 	<description>Poll Ochsner OTE (maybe others too) and publish values via MQTT</description>
 
@@ -115,6 +115,24 @@
 				<version>3.8.0</version>
 				<configuration>
 					<release>11</release>
+				</configuration>
+			</plugin>
+			<plugin>
+			<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skipDockerInfo>true</skipDockerInfo>
+					<repository>docker.io/mathismoder/ote-mqtt-client</repository>
+					<tag>${project.version}</tag>
 				</configuration>
 			</plugin>
 		</plugins>
