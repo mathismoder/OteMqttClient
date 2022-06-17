@@ -34,6 +34,10 @@ public class PublisherService {
 	private MQTTProperties properties;
 	
 	Logger logger = LoggerFactory.getLogger(PublisherService.class);
+
+	// when to exit, to avoid exiting after first error
+	private int errorCount = 0;
+	private int maxErrorCount = 20;
 	  
 	PublisherService(OteProperties properties) {
 		this.oids = properties.getOids();
@@ -55,8 +59,15 @@ public class PublisherService {
 		this.oid = this.queryIterator.next();
 		String result = api.query(oid);
 		if (result == ""){
-			System.exit(-1);
+			logger.warn("No response for {}", oid );
+			this.errorCount++;
+			if (this.errorCount > this.maxErrorCount){
+				logger.error("Too many API errors, will exit/restart");
+				System.exit(-1);
+			}
+			
 		}
+		this.errorCount = 0;
 		logger.info("Got response: {} = {} ", oid , result);
 		try {
 			MqttMessage msg = new MqttMessage();
