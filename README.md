@@ -1,5 +1,5 @@
 # OteMqttClient
-Poll Ochsner OTE (maybe others too) and publish the values via MQTT
+Poll Ochsner OTE (based on RC7000 developed by TEM) and publish the values via MQTT
 
 A readily usable docker image can be found at https://hub.docker.com/repository/docker/mathismoder/ote-mqtt-client
 
