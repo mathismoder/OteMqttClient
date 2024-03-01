@@ -51,7 +51,14 @@ public class PublisherService {
 
 	@Scheduled(fixedDelayString ="${ote.delay}")
     public void publishNextOid() {
-		if (!mqttclient.isConnected()) return;
+		if (!mqttclient.isConnected()){
+			try {
+				mqttclient.reconnect();
+			} catch (MqttException e) {
+				logger.error("Connection to broker lost");
+				System.exit(-1);
+			}
+		}
 		
 		if (!this.queryIterator.hasNext()) {
 			this.queryIterator = this.oids.iterator();
